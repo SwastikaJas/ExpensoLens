@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Budget Buddy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Smart Budget Buddy</h1>
+
+  <form id="uploadForm">
+    <input type="file" id="csvFile" name="file" accept=".csv" required>
+    <button type="submit">Upload and Predict</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById("uploadForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const fileInput = document.getElementById("csvFile");
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+
+      fetch("http://127.0.0.1:5000/predict", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        const resultBox = document.getElementById("result");
+        if (data.prediction) {
+          resultBox.innerHTML = "<pre>" + JSON.stringify(data.prediction, null, 2) + "</pre>";
+        } else {
+          resultBox.innerHTML = "<pre>Error: " + data.error + "</pre>";
+        }
+      })
+      .catch(err => {
+        document.getElementById("result").innerHTML = "<pre>Request failed</pre>";
+      });
+    });
+  </script>
+
+</body>
+</html>
