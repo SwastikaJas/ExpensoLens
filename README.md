@@ -1,6 +1,6 @@
-# 💸 Smart Budget Buddy
+# 💸 ExpensoLens
 
-Smart Budget Buddy is a personal finance assistant that analyzes your expenses, predicts future spending patterns using Machine Learning, and offers tailored savings tips — all via a simple, elegant web interface.
+ExpensoLens is a personal finance assistant that analyzes your expenses, predicts future spending patterns using Machine Learning, and offers tailored savings tips — all via a simple, elegant web interface.
 
 ## 🚀 Features
 - Upload CSV of past expenses
